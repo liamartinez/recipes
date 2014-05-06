@@ -2,6 +2,10 @@ class Blank {
   
   color blue, lightBlue, c; 
   int xLoc, yLoc, wi, hi; 
+  boolean addPlus; 
+  
+  boolean hide;
+  boolean showB = true; 
   
   Blank() {
     blue = color (#3A7ADE);
@@ -13,15 +17,23 @@ class Blank {
    yLoc = y; 
    wi = w; 
    hi = h; 
+   
+   if (showB) {
    fill (c); 
    noStroke(); 
     rect (xLoc, yLoc-hi, wi, hi); 
     stroke (240); 
     //plus
-    line (xLoc + wi/3, yLoc - (hi/2), (xLoc + wi) - wi/3, yLoc- (hi/2));
-    line (xLoc + wi/2, yLoc - hi/3, xLoc + wi/2, yLoc -h + h/3); 
+
+    if (addPlus) {
+    int lineLen = 10; 
+    line ((xLoc + wi/2) - lineLen, yLoc - (hi/2), (xLoc + wi/2) + lineLen, yLoc - (hi/2)); 
+    line (xLoc + wi/2, (yLoc-hi/2) + lineLen, xLoc + wi/2, (yLoc-hi/2) - lineLen); 
+    }
     clicked(); 
+   }
   }
+
   
   boolean clicked() {
     int x = mouseX; 
